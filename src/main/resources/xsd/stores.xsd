@@ -1,0 +1,44 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.com/springboot"
+           targetNamespace="http://webservice.com/springboot" elementFormDefault="qualified">
+
+    <xs:element name="getStoreRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getStoreResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="store" type="tns:store"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="store">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="location" type="xs:string"/>
+            <xs:element name="manager" type="tns:manager"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="manager">
+        <xs:sequence>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="role" type="tns:role"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="role">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ADMIN"/>
+            <xs:enumeration value="USER"/>
+            <xs:enumeration value="GUEST"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
